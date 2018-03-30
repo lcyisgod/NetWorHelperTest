@@ -50,7 +50,7 @@
     
     [dataDict setObject:jsonStr forKey:@"simpleAccountService.login"];
     
-    [NetWorkingHelper postDataWithParamer:dataDict successBlock:^(id obj) {
+    [NetWorkingHelper postDataWithParamer:dataDict url:@"http://gate.ys.51juban.com/odin/servlet/gate/single" successBlock:^(id obj) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"%@",dict);
     } failueBlock:^(id obj) {
@@ -90,12 +90,14 @@
     
     [dataDict setObject:jsonStr forKey:@"simpleAccountService.login"];
     
-    [NetWorkingHelper postDataWithParamer:dataDict successBlock:^(id obj) {
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",dict);
-    } failueBlock:^(id obj) {
-        NSLog(@"%@",obj);
-    }];
+    [NetWorkingHelper postDataWithParamer:dataDict
+                                      url:@"http://gate.ys.51juban.com/odin/servlet/gate/single"
+                             successBlock:^(id obj) {
+                                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingMutableContainers error:nil];
+                                 NSLog(@"%@",dict);
+                             } failueBlock:^(id obj) {
+                                 NSLog(@"%@",obj);
+                             }];
 }
 
 
@@ -117,12 +119,15 @@
     
     [dataDict setObject:jsonStr forKey:@"simpleAccountService.login"];
     
-    [NetWorkingHelper postDataWithParamer:dataDict successBlock:^(id obj) {
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",dict);
-    } failueBlock:^(id obj) {
-        NSLog(@"%@",obj);
-    }];
+    [NetWorkingHelper postDataWithParamer:dataDict
+                                      url:@"http://gate.ys.51juban.com/odin/servlet/gate/single"
+                             successBlock:^(id obj) {
+                                 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:obj options:NSJSONReadingMutableContainers error:nil];
+                                 NSLog(@"%@",dict);
+                             }
+                              failueBlock:^(id obj) {NSLog(@"%@",obj);
+                                  
+                              }];
 }
 
 - (NSString *)md5HexDigest:(NSString*)password

@@ -10,6 +10,12 @@
 
 @interface NetWorkingHelper : NSObject
 
-+(void)getDataWithUrlStr:(NSString *)url successBlock:(void (^)(id obj))success failueBlock:(void (^)(id obj))failue;
-+(void)postDataWithParamer:(id)paramer successBlock:(void (^)(id obj))success failueBlock:(void (^)(id obj))failue;
++(void)getDataWithUrlStr:(NSString *)url
+            successBlock:(void (^)(id obj))success
+             failueBlock:(void (^)(id obj))failue;
+
++(void)postDataWithParamer:(id)paramer
+                       url:(NSString *)urlStr
+              successBlock:(void (^)(id obj))success
+               failueBlock:(void (^)(id obj))failue;
 @end

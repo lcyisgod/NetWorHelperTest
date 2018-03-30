@@ -36,9 +36,11 @@ static NetWorkingHelper *shareNetworking = nil;
             successBlock:(void (^)(id))success
              failueBlock:(void (^)(id))failue {
     NetWorkingHelper *helper = [NetWorkingHelper shareDefault];
+    //对url进行转码,防止有中文产生
+    NSString *urlStr = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSURLSessionDataTask *dataTask = [helper.session dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSURLSessionDataTask *dataTask = [helper.session dataTaskWithURL:[NSURL URLWithString:urlStr] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (!error) {
                     success(data);
@@ -51,10 +53,10 @@ static NetWorkingHelper *shareNetworking = nil;
     });
 }
 
-+(void)postDataWithParamer:(id)paramer successBlock:(void (^)(id))success failueBlock:(void (^)(id))failue {
++(void)postDataWithParamer:(id)paramer url:(NSString *)urlStr successBlock:(void (^)(id))success failueBlock:(void (^)(id))failue {
     NetWorkingHelper *helper = [NetWorkingHelper shareDefault];
     
-    NSURL *url = [NSURL URLWithString:@"http://gate.ys.51juban.com/odin/servlet/gate/single"];
+    NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 //    //设置请求超时时间
 //    request.timeoutInterval = 0.5;
