@@ -84,7 +84,7 @@ static NetWorkingHelper *shareNetworking = nil;
     });
 }
 
-//苹果官方的请求体最终封装成字符串类型
+//因为当前要求传递的数据格式是表单类型，所以转成字符串
 +(NSData *)requestDataWithObj:(id)paramer {
     NSString *dataStr = @"";
     if ([paramer isKindOfClass:[NSString class]]) {
